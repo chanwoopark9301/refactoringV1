@@ -1,3 +1,7 @@
+const fs = require("fs");
+const invoice = JSON.parse(fs.readFileSync("invoices.json", "utf8"));
+const plays = JSON.parse(fs.readFileSync("plays.json", "utf8"));
+
 function statement(invoice, plays) {
   let result = `청구 내용(고객명:${invoice[0].customer})\n`;
 
@@ -64,31 +68,5 @@ function volumeCreditsFor(aPerformance) {
     volumeCredits += Math.floor(aPerformance.audience / 5);
   return volumeCredits;
 }
-
-const invoice = [
-  {
-    customer: "BigCo",
-    performances: [
-      {
-        playID: "hamlet",
-        audience: 55,
-      },
-      {
-        playID: "as-like",
-        audience: 35,
-      },
-      {
-        playID: "othello",
-        audience: 40,
-      },
-    ],
-  },
-];
-
-const plays = {
-  hamlet: { name: "Hamlet", type: "tragedy" },
-  "as-like": { name: "As You Like It", type: "comedy" },
-  othello: { name: "Othello", type: "tragedy" },
-};
 
 console.log(statement(invoice, plays));
