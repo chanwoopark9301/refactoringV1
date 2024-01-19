@@ -1,7 +1,7 @@
-const fs = require("fs");
+import fs from "fs";
 const invoice = JSON.parse(fs.readFileSync("invoices.json", "utf8"));
 const plays = JSON.parse(fs.readFileSync("plays.json", "utf8"));
-const createStatementData = require("./createStatementData.js");
+import createStatementData from "./createStatementData.js";
 
 function statement(invoice, plays) {
   return renderPlainText(createStatementData(invoice, plays));
@@ -43,3 +43,5 @@ function usd(aNumber) {
 }
 
 console.log(statement(invoice, plays));
+
+export { statement, htmlStatement };

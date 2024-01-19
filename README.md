@@ -13,3 +13,31 @@
   2. 테스트 코드는 자가진단이 가능하도록(초록/빨강으로 한 눈에 알 수 있도록)
 - 1.4 statement() 함수 쪼개기
 - 1.5
+- 1.6
+- 1.7
+- 1.8 다형성을 활용해 계산 코드 재구성하기
+  1. 조건부 로직을 다형성으로 바꾸기
+     - 상속 계층부터 정의 -> 다형성을 적용해 조건부 로직 수정
+     ```javascript
+     function amountFor(aPerformance) {
+       let thisAmount = 0;
+       switch (aPerformance.play.type) {
+         case "tragedy":
+           thisAmount = 40000;
+           if (aPerformance.audience > 30) {
+             thisAmount += 1000 * (aPerformance.audience - 30);
+           }
+           break;
+         case "comedy":
+           thisAmount = 30000;
+           if (aPerformance.audience > 20) {
+             thisAmount += 10000 + 500 * (aPerformance.audience - 20);
+           }
+           thisAmount += 300 * aPerformance.audience;
+           break;
+         default:
+           throw new Error(`알 수 없는 장르: ${aPerformance.play.type}`);
+       }
+       return thisAmount;
+     }
+     ```

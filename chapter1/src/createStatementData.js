@@ -1,13 +1,11 @@
-module.exports = createStatementData;
+export default function createStatementData(invoice, plays) {
+  const statementData = {};
+  statementData.customer = invoice[0].customer;
+  statementData.performances = invoice[0].performances.map(enrichPerformance);
+  statementData.totalAmount = totalAmount(statementData);
+  statementData.totalVolumeCredits = totalVolumeCredits(statementData);
 
-function createStatementData(invoice, plays) {
-  const result = {};
-  result.customer = invoice.customer;
-  result.performances = invoice[0].performances.map(enrichPerformance);
-  result.totalAmount = totalAmount(result);
-  result.totalVolumeCredits = totalVolumeCredits(result);
-
-  return result;
+  return statementData;
 
   function enrichPerformance(aPerformance) {
     const result = Object.assign({}, aPerformance);

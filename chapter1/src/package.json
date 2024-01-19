@@ -1,0 +1,14 @@
+{
+  "name": "chapter1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "createStatementData.js",
+  "type": "module",
+  "scripts": {
+    "start": "node statement_V3.js",
+    "test": "mocha",
+    "debug": "node --inspect statement_V3.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
